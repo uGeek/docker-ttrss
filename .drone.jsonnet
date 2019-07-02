@@ -16,7 +16,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
       settings: {
         dry_run: true,
         tags: version_tag,
-        dockerfile: 'docker/Dockerfile.' + file_suffix,
+        dockerfile: './Dockerfile.' + file_suffix,
         repo: ' xoxys/ttrss',
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
@@ -29,7 +29,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
       settings: {
         auto_tag: true,
         auto_tag_suffix: version_tag,
-        dockerfile: 'docker/Dockerfile.' + file_suffix,
+        dockerfile: './Dockerfile.' + file_suffix,
         repo: ' xoxys/ttrss',
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
@@ -60,7 +60,7 @@ local PipelineNotifications(depends_on=[]) = {
         ignore_missing: true,
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
-        spec: "docker/manifest.tmpl",
+        spec: "./manifest.tmpl",
       },
       when: {
         ref: [

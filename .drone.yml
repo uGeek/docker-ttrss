@@ -11,7 +11,7 @@ steps:
   pull: always
   image: plugins/docker:linux-amd64
   settings:
-    dockerfile: docker/Dockerfile.linux.amd64
+    dockerfile: ./Dockerfile.linux.amd64
     dry_run: true
     password:
       from_secret: docker_password
@@ -26,7 +26,7 @@ steps:
   settings:
     auto_tag: true
     auto_tag_suffix: linux-amd64
-    dockerfile: docker/Dockerfile.linux.amd64
+    dockerfile: ./Dockerfile.linux.amd64
     password:
       from_secret: docker_password
     repo:  xoxys/ttrss
@@ -53,7 +53,7 @@ steps:
     ignore_missing: true
     password:
       from_secret: docker_password
-    spec: docker/manifest.tmpl
+    spec: ./manifest.tmpl
     username:
       from_secret: docker_username
   when:
@@ -94,6 +94,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 61db8b8005c0b27eb1a77e27f8db95a6778716d3623ecea9f3cf2498d6230541
+hmac: f15274a2fd107c7a19948d4ba36c9c2fe6c55bad46d8a4690c529c801ef8c9ad
 
 ...
