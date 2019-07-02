@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+s6-setuidgid nginx php7 /var/www/app/update_daemon2.php > /dev/null 2>&1

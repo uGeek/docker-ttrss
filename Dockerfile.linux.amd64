@@ -1,0 +1,34 @@
+FROM alpine:3.10.0
+
+ARG TTRSS_VERSION
+ARG TTRSS_TARBALL=https://git.tt-rss.org/git/tt-rss/archive/${TT_RSS_VERSION}.tar.gz
+ARG TTRSS_MASTER=https://git.tt-rss.org/fox/tt-rss.git
+
+RUN apk update && \
+    apk add gomplate openssl unzip nginx bash git ca-certificates s6 curl ssmtp mailx php7 php7-curl \
+    php7-fpm php7-xml php7-dom php7-opcache php7-iconv php7-pdo php7-pdo_mysql php7-mysqli php7-mysqlnd \
+    php7-pdo_pgsql php7-pgsql php7-gd php7-mcrypt php7-posix php7-ldap php7-json php7-mbstring \
+    php7-session php7-fileinfo php7-intl php7-pcntl && \
+    rm -rf /var/cache/apk/* && \
+    rm -rf /var/www/localhost && \
+    rm -f /etc/php7/php-fpm.d/www.conf && \
+    mkdir -p /var/www/app && \
+    if [ -z ${TTRSS_VERSION+x} ]; then \
+       git clone ${TTRSS_MASTER} /var/www/app; \
+    else \
+      curl -o /tmp/ttrss.tar.gz -L ${TTRSS_TARBALL}.tar.gz && \
+      tar xf /tmp/ttrss.tar.gz -C /var/www/app/ --strip-components=1 && \
+      rm -rf /tmp/*; \
+    fi
+
+ADD overlay/ /
+
+VOLUME /var/www/app/lock
+VOLUME /var/www/app/cache
+VOLUME /var/www/app/feed-icons
+
+EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+WORKDIR /var/www/app
+CMD []

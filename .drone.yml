@@ -1,0 +1,99 @@
+---
+kind: pipeline
+name: linux-amd64
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: dryrun
+  pull: always
+  image: plugins/docker:linux-amd64
+  settings:
+    dockerfile: docker/Dockerfile.linux.amd64
+    dry_run: true
+    password:
+      from_secret: docker_password
+    repo:  xoxys/ttrss
+    tags: linux-amd64
+    username:
+      from_secret: docker_username
+
+- name: publish
+  pull: always
+  image: plugins/docker:linux-amd64
+  settings:
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    dockerfile: docker/Dockerfile.linux.amd64
+    password:
+      from_secret: docker_password
+    repo:  xoxys/ttrss
+    username:
+      from_secret: docker_username
+  when:
+    ref:
+    - refs/heads/master
+    - "refs/tags/**"
+
+---
+kind: pipeline
+name: notifications
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: manifest
+  pull: always
+  image: plugins/manifest
+  settings:
+    ignore_missing: true
+    password:
+      from_secret: docker_password
+    spec: docker/manifest.tmpl
+    username:
+      from_secret: docker_username
+  when:
+    ref:
+    - refs/heads/master
+    - "refs/tags/**"
+
+- name: microbadger
+  pull: always
+  image: plugins/webhook
+  settings:
+    urls:
+      from_secret: microbadger_url
+
+- name: matrix
+  pull: always
+  image: plugins/matrix
+  settings:
+    homeserver: https://matrix.rknet.org
+    password:
+      from_secret: matrix_password
+    roomid: MtidqQXWWAtQcByBhH:rknet.org
+    template: "Status: **{{ build.status }}**<br/> Build: [{{ repo.Owner }}/{{ repo.Name }}]({{ build.link }}) ({{ build.branch }}) by {{ build.author }}<br/> Message: {{ build.message }}"
+    username:
+      from_secret: matrix_username
+  when:
+    status:
+    - success
+    - failure
+
+trigger:
+  status:
+  - success
+  - failure
+
+depends_on:
+- linux-amd64
+
+---
+kind: signature
+hmac: 61db8b8005c0b27eb1a77e27f8db95a6778716d3623ecea9f3cf2498d6230541
+
+...

@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  ttrss:
+    image: xoxys/ttrss:latest
+    ports:
+      - "80:80"
+      
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secure
+      POSTGRES_DB: ttrss
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+
+volumes:
+  postgres_data:
+    driver: local
