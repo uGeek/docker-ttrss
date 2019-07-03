@@ -5,7 +5,9 @@ services:
     image: xoxys/ttrss:latest
     ports:
       - "80:80"
-      
+    depends_on:
+      - db    
+  
   db:
     image: postgres
     environment:
