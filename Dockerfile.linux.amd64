@@ -14,6 +14,7 @@ RUN apk --update add --virtual .build-deps tar curl && \
     curl -SsL -o /usr/local/bin/gomplate https://github.com/hairyhenderson/gomplate/releases/download/v3.5.0/gomplate_linux-amd64-slim && \ 
     chmod 755 /usr/local/bin/gomplate && \
     curl -SsL ${TTRSS_TARBALL} | tar xz -C /var/www/app/ --strip-components=1 && \
+    curl -SsL -o /etc/php7/browscap.ini https://browscap.org/stream?q=Lite_PHP_BrowsCapINI && \
     apk del .build-deps && \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
