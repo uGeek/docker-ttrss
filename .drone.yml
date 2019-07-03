@@ -61,6 +61,21 @@ steps:
     - refs/heads/master
     - "refs/tags/**"
 
+- name: readme
+  image: sheogorath/readme-to-dockerhub
+  environment:
+    DOCKERHUB_PASSWORD:
+      from_secret: docker_password
+    DOCKERHUB_REPO_NAME: ttrss
+    DOCKERHUB_REPO_PREFIX: xoxys
+    DOCKERHUB_USERNAME:
+      from_secret: docker_username
+    README_PATH: README.md
+  when:
+    ref:
+    - refs/heads/master
+    - "refs/tags/**"
+
 - name: microbadger
   pull: always
   image: plugins/webhook
@@ -94,6 +109,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: f15274a2fd107c7a19948d4ba36c9c2fe6c55bad46d8a4690c529c801ef8c9ad
+hmac: a65910eece4462292dd0b4c69d09893697f7ce38fe3ba938fa96e2c799d57ad2
 
 ...

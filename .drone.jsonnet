@@ -70,6 +70,23 @@ local PipelineNotifications(depends_on=[]) = {
       },
     },
     {
+      image: "sheogorath/readme-to-dockerhub",
+      name: "readme",
+      environment: {
+        DOCKERHUB_USERNAME: { from_secret: "docker_username" },
+        DOCKERHUB_PASSWORD: { from_secret: "docker_password" },
+        DOCKERHUB_REPO_PREFIX: "xoxys",
+        DOCKERHUB_REPO_NAME: "ttrss",
+        README_PATH: "README.md"
+      },
+      when: {
+        ref: [
+          'refs/heads/master',
+          'refs/tags/**',
+        ],
+      },
+    },
+    {
       name: "microbadger",
       image: "plugins/webhook",
       pull: "always",
