@@ -1,5 +1,11 @@
 FROM alpine:3.10.0
 
+LABEL maintainer="Robert Kaussow <mail@geeklabor.de>" \
+    org.label-schema.name="TT-RSS" \
+    org.label-schema.version="1.2" \
+    org.label-schema.vendor="Robert Kaussow" \
+    org.label-schema.schema-version="1.0"
+
 ARG TTRSS_VERSION=master
 ARG TTRSS_TARBALL=https://git.tt-rss.org/git/tt-rss/archive/${TTRSS_VERSION}.tar.gz
 
@@ -11,7 +17,7 @@ RUN apk --update add --virtual .build-deps tar curl && \
     rm -rf /var/www/localhost && \
     rm -f /etc/php7/php-fpm.d/www.conf && \
     mkdir -p /var/www/app && \
-    curl -SsL -o /usr/local/bin/gomplate https://github.com/hairyhenderson/gomplate/releases/download/v3.5.0/gomplate_linux-amd64-slim && \ 
+    curl -SsL -o /usr/local/bin/gomplate https://github.com/hairyhenderson/gomplate/releases/download/v3.5.0/gomplate_linux-amd64-slim && \
     chmod 755 /usr/local/bin/gomplate && \
     curl -SsL ${TTRSS_TARBALL} | tar xz -C /var/www/app/ --strip-components=1 && \
     curl -SsL -o /etc/php7/browscap.ini https://browscap.org/stream?q=Lite_PHP_BrowsCapINI && \

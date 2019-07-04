@@ -9,6 +9,8 @@ TT-RSS is an open source web-based news feed (RSS/Atom) reader and aggregator, d
 
 Here are some example snippets to help you get started creating a container.
 
+> **WARNING**: For production usage you should secure your database and NOT use the default credentials!
+
 ### Docker
 
 ```Shell
