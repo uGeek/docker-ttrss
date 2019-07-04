@@ -70,14 +70,16 @@ local PipelineNotifications(depends_on=[]) = {
       },
     },
     {
-      image: "sheogorath/readme-to-dockerhub",
       name: "readme",
+      image: "sheogorath/readme-to-dockerhub",
+      pull: "always",
       environment: {
         DOCKERHUB_USERNAME: { from_secret: "docker_username" },
         DOCKERHUB_PASSWORD: { from_secret: "docker_password" },
         DOCKERHUB_REPO_PREFIX: "xoxys",
         DOCKERHUB_REPO_NAME: "ttrss",
-        README_PATH: "README.md"
+        README_PATH: "README.md",
+        SHORT_DESCRIPTION: "Tiny Tiny RSS - free and open source news feed reader and aggregator"
       },
       when: {
         ref: [
