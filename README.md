@@ -1,7 +1,7 @@
 # [ttrss](https://gitea.rknet.org/docker/ttrss)
 
 [![Build Status](https://drone.rknet.org/api/badges/docker/ttrss/status.svg)](https://drone.rknet.org/docker/ttrss/)
-[![](https://images.microbadger.com/badges/image/xoxys/ttrss.svg)](https://microbadger.com/images/xoxys/ttrss "Get your own image badge on microbadger.com")
+[![Microbadger](https://images.microbadger.com/badges/image/xoxys/ttrss.svg)](https://microbadger.com/images/xoxys/ttrss "Get your own image badge on microbadger.com")
 
 TT-RSS is an open source web-based news feed (RSS/Atom) reader and aggregator, designed to allow you to read news from any location, while feeling as close to a real desktop application as possible.
 
