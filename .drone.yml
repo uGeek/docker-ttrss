@@ -12,7 +12,8 @@ steps:
   image: plugins/docker:linux-amd64
   settings:
     build_args:
-      TTRSS_VERSION: "${DRONE_TAG##v}"
+      TTRSS_ORG_VERSION: "${DRONE_TAG##v}"
+      TTRSS_VERSION: "${TTRSS_ORG_VERSION%.*}"
     dockerfile: ./Dockerfile.linux.amd64
     dry_run: true
     password:
@@ -29,7 +30,8 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-amd64
     build_args:
-      TTRSS_VERSION: "${DRONE_TAG##v}"
+      TTRSS_ORG_VERSION: "${DRONE_TAG##v}"
+      TTRSS_VERSION: "${TTRSS_ORG_VERSION%.*}"
     dockerfile: ./Dockerfile.linux.amd64
     password:
       from_secret: docker_password
@@ -115,6 +117,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 070d95c434753c6b95c0a279d9c103f20e3b1b1975ba76b758eaf9bfc8a2e7a9
+hmac: cbd2a20fb2faf2aefb99ea8f4c72172cde68bfe2aa0fb1af886a0bdbcaec7005
 
 ...
