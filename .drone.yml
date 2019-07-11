@@ -56,6 +56,7 @@ steps:
   pull: always
   image: plugins/manifest
   settings:
+    auto_tag: true
     ignore_missing: true
     password:
       from_secret: docker_password
@@ -117,6 +118,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: cbd2a20fb2faf2aefb99ea8f4c72172cde68bfe2aa0fb1af886a0bdbcaec7005
+hmac: 1be20e6fec87140af3743fe805e738be2a4750a85cc8452332287841c30b699f
 
 ...

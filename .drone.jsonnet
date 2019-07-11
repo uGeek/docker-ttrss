@@ -65,6 +65,7 @@ local PipelineNotifications(depends_on=[]) = {
       name: "manifest",
       pull: "always",
       settings: {
+        auto_tag: true,
         ignore_missing: true,
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
