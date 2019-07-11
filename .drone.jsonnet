@@ -21,7 +21,8 @@ local PipelineBuild(os='linux', arch='amd64') = {
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
         build_args: {
-          TTRSS_VERSION: "${DRONE_TAG##v}",
+          TTRSS_ORG_VERSION: "${DRONE_TAG##v}",
+          TTRSS_VERSION: "${TTRSS_ORG_VERSION%.*}",
         },
       },
     },
@@ -37,7 +38,8 @@ local PipelineBuild(os='linux', arch='amd64') = {
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
         build_args: {
-          TTRSS_VERSION: "${DRONE_TAG##v}",
+          TTRSS_ORG_VERSION: "${DRONE_TAG##v}",
+          TTRSS_VERSION: "${TTRSS_ORG_VERSION%.*}",
         },
       },
       when: {
