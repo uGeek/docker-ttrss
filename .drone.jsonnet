@@ -20,6 +20,9 @@ local PipelineBuild(os='linux', arch='amd64') = {
         repo: ' xoxys/ttrss',
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
+        build_args: {
+          TTRSS_VERSION: "${DRONE_TAG##v}",
+        },
       },
     },
     {
@@ -33,6 +36,9 @@ local PipelineBuild(os='linux', arch='amd64') = {
         repo: ' xoxys/ttrss',
         username: { from_secret: "docker_username" },
         password: { from_secret: "docker_password" },
+        build_args: {
+          TTRSS_VERSION: "${DRONE_TAG##v}",
+        },
       },
       when: {
         ref: [
