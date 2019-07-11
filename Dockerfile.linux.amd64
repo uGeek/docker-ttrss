@@ -27,8 +27,7 @@ RUN apk --update add --virtual .build-deps tar curl && \
 
 ADD overlay/ /
 
-VOLUME /var/www/app/lock
-VOLUME /var/www/app/cache
+VOLUME /var/www/app/plugins.local
 VOLUME /var/www/app/feed-icons
 
 EXPOSE 80

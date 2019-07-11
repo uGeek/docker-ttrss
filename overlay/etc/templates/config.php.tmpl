@@ -44,7 +44,7 @@
 	// *** Files and directories ***
 	// *****************************
 
-	define('PHP_EXECUTABLE', '{{ getenv "TTRSS_PHP_EXECUTABLE" "/usr/bin/php" }}');
+	define('PHP_EXECUTABLE', '/usr/bin/php');
 	// Path to PHP *COMMAND LINE* executable, used for various command-line tt-rss
 	// programs and update daemon. Do not try to use CGI binary here, it won't work.
 	// If you see HTTP headers being displayed while running tt-rss scripts,
@@ -137,7 +137,7 @@
 	// https://git.tt-rss.org/fox/ttrss-mailer-smtp
 
 	define('SMTP_FROM_NAME', '{{ getenv "TTRSS_SMTP_FROM_NAME" "Tiny Tiny RSS" }}');
-	define('SMTP_FROM_ADDRESS', '{{ getenv "TTRSS_SMTP_FROM_NAME" }}');
+	define('SMTP_FROM_ADDRESS', '{{ getenv "TTRSS_SMTP_FROM_ADDRESS" }}');
 	// Name, address and subject for sending outgoing mail. This applies
 	// to password reset notifications, digest emails and any other mail.
 
@@ -148,10 +148,10 @@
 	// *** Other settings (less important) ***
 	// ***************************************
 
-	define('CHECK_FOR_UPDATES', {{ getenv "TTRSS_CHECK_FOR_UPDATES" "true" }});
+	define('CHECK_FOR_UPDATES', false);
 	// Check for updates automatically if running Git version
 
-	define('ENABLE_GZIP_OUTPUT', {{ getenv "TTRSS_ENABLE_GZIP_OUTPUT" "false" }});
+	define('ENABLE_GZIP_OUTPUT', false);
 	// Selectively gzip output to improve wire performance. This requires
 	// PHP Zlib extension on the server.
 	// Enabling this can break tt-rss in several httpd/php configurations,
@@ -167,7 +167,7 @@
 	// Disabling auth_internal in this list would automatically disable
 	// reset password link on the login form.
 
-	define('LOG_DESTINATION', '{{ getenv "TTRSS_LOG_DESTINATION" "sql" }}');
+	define('LOG_DESTINATION', 'sql');
 	// Error log destination to use. Possible values: sql (uses internal logging
 	// you can read in Preferences -> System), syslog - logs to system log.
 	// Setting this to blank uses PHP logging (usually to http server
@@ -175,6 +175,6 @@
 	// Note that feed updating daemons don't use this logging facility
 	// for normal output.
 
-	define('CONFIG_VERSION', {{ getenv "TTRSS_CONFIG_VERSION" "26" }});
+	define('CONFIG_VERSION', 26);
 	// Expected config version. Please update this option in config.php
 	// if necessary (after migrating all new options from this file).

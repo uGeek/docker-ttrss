@@ -35,6 +35,9 @@ services:
       - "80:80"
     depends_on:
       - db
+    volumes:
+      - plugins:/var/www/app/plugins.local
+      - icons:/var/www/app/feed-icons
 
   db:
     image: postgres
@@ -47,6 +50,10 @@ services:
 
 volumes:
   postgres_data:
+    driver: local
+  plugins:
+    driver: local
+  icons:
     driver: local
 ```
 
@@ -64,7 +71,6 @@ TTRSS_DB_PORT=5432
 TTRSS_SELF_URL_PATH=http://localhost/
 TTRSS_SINGLE_USER_MODE=false
 TTRSS_SIMPLE_UPDATE_MODE=false
-TTRSS_PHP_EXECUTABLE=/usr/bin/php
 TTRSS_AUTH_AUTO_CREATE=true
 TTRSS_AUTH_AUTO_LOGIN=true
 TTRSS_FORCE_ARTICLE_PURGE=0
@@ -75,13 +81,9 @@ TTRSS_REG_NOTIFY_ADDRESS=
 TTRSS_REG_MAX_USERS=10;
 TTRSS_SESSION_COOKIE_LIFETIME=86400
 TTRSS_SMTP_FROM_NAME=Tiny Tiny RSS
-TTRSS_SMTP_FROM_NAME=
+TTRSS_SMTP_FROM_ADDRESS=
 TTRSS_DIGEST_SUBJECT=[tt-rss] New headlines for last 24 hours
-TTRSS_CHECK_FOR_UPDATES=true
-TTRSS_ENABLE_GZIP_OUTPUT=false
 TTRSS_PLUGINS=auth_internal, note
-TTRSS_LOG_DESTINATION=sql
-TTRSS_CONFIG_VERSION=26
 ```
 
 ### PHP
