@@ -5,7 +5,9 @@
 chown -R nginx:nginx /var/www/app/lock
 chown -R nginx:nginx /var/www/app/cache
 chown -R nginx:nginx /var/www/app/feed-icons
+chown -R nginx:nginx /var/www/app/plugins.local
+chown -R nginx:nginx /var/www/app/themes.local
 
-s6-setuidgid nginx php7 /var/www/app/docker_setup.php
+s6-setuidgid nginx php /var/www/app/docker_setup.php
 
 exec /bin/s6-svscan /etc/services.d

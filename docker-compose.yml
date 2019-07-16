@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   ttrss:
@@ -6,8 +6,12 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - db    
-  
+      - db
+    volumes:
+      - plugins:/var/www/app/plugins.local
+      - icons:/var/www/app/feed-icons
+      - themes:/var/www/app/themes.local
+
   db:
     image: postgres
     environment:
@@ -15,8 +19,14 @@ services:
       POSTGRES_PASSWORD: secure
       POSTGRES_DB: ttrss
     volumes:
-      - postgres_data:/var/lib/postgresql/data 
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
+    driver: local
+  plugins:
+    driver: local
+  icons:
+    driver: local
+  themes:
     driver: local

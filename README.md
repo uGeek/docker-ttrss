@@ -26,7 +26,7 @@ Compatible with docker-compose v2 schemas.
 
 ```Yaml
 ---
-version: '2'
+version: '2.1'
 
 services:
   ttrss:
@@ -38,6 +38,7 @@ services:
     volumes:
       - plugins:/var/www/app/plugins.local
       - icons:/var/www/app/feed-icons
+      - themes:/var/www/app/themes.local
 
   db:
     image: postgres
@@ -54,6 +55,8 @@ volumes:
   plugins:
     driver: local
   icons:
+    driver: local
+  themes:
     driver: local
 ```
 
