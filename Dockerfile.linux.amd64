@@ -34,6 +34,6 @@ VOLUME /var/www/app/themes.local
 EXPOSE 80
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-HEALTHCHECK --interval=30s --timeout=10s --retries=5 CMD wget --quiet --tries=1 --spider http://localhost
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD /usr/local/bin/healthcheck.sh
 WORKDIR /var/www/app
 CMD []
