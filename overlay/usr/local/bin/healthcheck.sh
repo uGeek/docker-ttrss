@@ -9,7 +9,8 @@ wget --quiet --tries=1 --spider ${URL}
 CONTENT=$(wget --quiet -O - ${URL})
 case "$CONTENT" in
   *Exception*) exit 1 ;;
-  *misconfiguration*) exit 1 ;;
+  *alert-*SELF_URL_PATH*alert-*) exit 1 ;;
+  *SELF_URL_PATH*alert-*alert-*) exit 1 ;;
 esac
 
 exit 0
