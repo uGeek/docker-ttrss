@@ -3,9 +3,9 @@
 /usr/local/bin/gomplate -V -o /var/www/app/config.php -f /etc/templates/config.php.tmpl
 
 # ensure lock folders exists
-mkdir -p /var/www/app/lock/images
-mkdir -p /var/www/app/lock/upload
-mkdir -p /var/www/app/lockexport
+mkdir -p /var/www/app/cache/images
+mkdir -p /var/www/app/cache/upload
+mkdir -p /var/www/app/cache/export
 
 chown -R nginx:nginx /var/www/app/lock
 chown -R nginx:nginx /var/www/app/cache
