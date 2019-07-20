@@ -11,9 +11,6 @@ services:
       - plugins:/var/www/app/plugins.local
       - icons:/var/www/app/feed-icons
       - themes:/var/www/app/themes.local
-    tmpfs:
-      - /var/www/app/cache
-      - /var/www/app/lock
 
   db:
     image: postgres
