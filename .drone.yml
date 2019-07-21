@@ -79,7 +79,7 @@ steps:
     DOCKERHUB_USERNAME:
       from_secret: docker_username
     README_PATH: README.md
-    SHORT_DESCRIPTION: Tiny Tiny RSS - free and open source news feed reader and aggregator
+    SHORT_DESCRIPTION: Tiny Tiny RSS - Free and open source news feed reader and aggregator
   when:
     ref:
     - refs/heads/master
@@ -118,6 +118,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 1be20e6fec87140af3743fe805e738be2a4750a85cc8452332287841c30b699f
+hmac: dc21d353585f6faf703b81baa1265634b52543a981c2745f07859dcc41dcabf7
 
 ...
