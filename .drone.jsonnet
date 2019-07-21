@@ -88,7 +88,7 @@ local PipelineNotifications(depends_on=[]) = {
         DOCKERHUB_REPO_PREFIX: "xoxys",
         DOCKERHUB_REPO_NAME: "ttrss",
         README_PATH: "README.md",
-        SHORT_DESCRIPTION: "Tiny Tiny RSS - free and open source news feed reader and aggregator"
+        SHORT_DESCRIPTION: "Tiny Tiny RSS - Free and open source news feed reader and aggregator"
       },
       when: {
         ref: [
