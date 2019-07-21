@@ -36,9 +36,9 @@ services:
     depends_on:
       - db
     volumes:
-      - plugins:/var/www/app/plugins.local
-      - icons:/var/www/app/feed-icons
-      - themes:/var/www/app/themes.local
+      - ttrss_plugins:/var/www/app/plugins.local
+      - ttrss_icons:/var/www/app/feed-icons
+      - ttrss_themes:/var/www/app/themes.local
 
   db:
     image: postgres
@@ -52,11 +52,11 @@ services:
 volumes:
   postgres_data:
     driver: local
-  plugins:
+  ttrss_plugins:
     driver: local
-  icons:
+  ttrss_icons:
     driver: local
-  themes:
+  ttrss_themes:
     driver: local
 ```
 
