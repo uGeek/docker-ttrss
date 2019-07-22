@@ -23,7 +23,13 @@ RUN apk --update add --virtual .build-deps tar curl && \
     curl -SsL -o /etc/php7/browscap.ini https://browscap.org/stream?q=Lite_PHP_BrowsCapINI && \
     apk del .build-deps && \
     rm -rf /var/cache/apk/* && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* && \
+    mkdir -p /var/lib/php/tmp_upload && \
+    mkdir -p /var/lib/php/soap_cache && \
+    mkdir -p /var/lib/php/session && \
+    chown -R nginx:nginx /var/lib/php/tmp_upload && \
+    chown -R nginx:nginx /var/lib/php/soap_cache && \
+    chown -R nginx:nginx /var/lib/php/session
 
 ADD overlay/ /
 
