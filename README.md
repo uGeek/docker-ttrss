@@ -138,3 +138,5 @@ This project is licensed under the MIT License - see the [LICENSE](https://gitea
 ### Maintainers and Contributors
 
 [Robert Kaussow](https://gitea.rknet.org/xoxys)
+
+Fork: https://gitea.rknet.org/docker/ttrss
