@@ -13,12 +13,20 @@ Here are some example snippets to help you get started creating a container.
 
 ### Docker
 
+
+```
+docker run --name tt-rss  -p 81:80 -v $HOME/docker/tt-rss:/var/www/app  ugeek/tt-rss
+```
+
+
+
 ```Shell
 docker create \
   --name=ttrss \
   -p 80:80 \
   xoxys/ttrss
 ```
+
 
 ### Docker Compose
 
