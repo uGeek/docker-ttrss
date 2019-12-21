@@ -1,6 +1,6 @@
 FROM alpine:3.10.0
 
-LABEL maintainer="Robert Kaussow <mail@geeklabor.de>" \
+LABEL maintainer="angel <ugeekpodcast@gmail.com>" \
     org.label-schema.name="TT-RSS" \
     org.label-schema.version="1.2" \
     org.label-schema.vendor="Robert Kaussow" \
